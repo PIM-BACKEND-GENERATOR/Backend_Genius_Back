@@ -14,7 +14,7 @@ import { token } from "morgan";
 
 export const registerUser = async (req, res) => {
     try {
-        const { username, password } = req.body;
+        const { username, password, firstName, email } = req.body;
 
         // Vérifier si l'utilisateur existe déjà
         const existingUser = await UserModel.findOne({ username });

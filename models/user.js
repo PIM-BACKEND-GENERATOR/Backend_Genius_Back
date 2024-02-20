@@ -12,10 +12,6 @@ const userSchema = new Schema(
             type:String,
             required:false
         },
-        lastname:{
-            type:String,
-            required:false
-        },
         email:{
             type:String,
             required:true
@@ -23,31 +19,6 @@ const userSchema = new Schema(
         password:{
             type:String,
             required:true
-        },
-        adress:{
-            type:String,
-            required:false
-        },
-        description:{
-            type:String,
-            required:false
-        },
-        number:{
-            type: Number,
-            required: false,
-
-        },
-        skills: [
-            {
-                type: String,
-                required: false
-            }
-        ],
-        followers: [],
-        following: [],
-        birthday:{
-            type: Date
-
         },
         image:{
             type: String,
@@ -63,8 +34,6 @@ const userSchema = new Schema(
             type: String,
             enum: ['active', 'banned'],
             default: 'active',
-           
-
         },
         banduration:{
             type: String,
@@ -80,11 +49,7 @@ const userSchema = new Schema(
             type: Boolean,
             default: false,
 
-        },
-        restcode:{
-            type: String,
-            required: false,
-        },
+        }
 
     },
     {

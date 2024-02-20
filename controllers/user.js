@@ -12,7 +12,7 @@ import sendEmail from "../utils/sendEmail.js";
   
 export const editProfile = async (req, res) => {
     const userId = req.body.userId; // Assuming the user ID is passed in the request body
-    const { username, email, firstname, lastname, address, birthday, number,description } = req.body;
+    const { password, email, firstname, lastname} = req.body;
 
     try {
         // Recherche de l'utilisateur dans la base de données
@@ -23,14 +23,11 @@ export const editProfile = async (req, res) => {
         }
 
         // Mise à jour des champs du profil
-        user.username = username || user.username;
+        
         user.email = email || user.email;
         user.firstname = firstname || user.firstname;
         user.lastname = lastname || user.lastname;
-        user.adress = address || user.adress;
-        user.birthday = birthday || user.birthday;
-        user.number = number || user.number;
-        user.description = description || user.description;
+        user.password = password || user.password;
         if (req.file) {
           user.image = req.file.path; // Save the file path or any identifier in your database
       }
@@ -221,7 +218,7 @@ export const getAllUsers = async (req, res) => {
                                                                                 <tbody>
                                                                                     <tr>
                                                                                         <td class="esd-block-text" esd-links-color="#666666" align="center">
-                                                                                            <p style="font-size: 14px;">Contact us: +21693260059 | empowerLink<a target="_blank" href="mailto:your@mail.com" style="font-size: 14px; color: #666666;">@esprit.</a>tn</p>
+                                                                                            <p style="font-size: 14px;">Contact us: +21629565053 | BackendGenius<a target="_blank" href="mailto:your@mail.com" style="font-size: 14px; color: #666666;">@esprit.</a>tn</p>
                                                                                         </td>
                                                                                     </tr>
                                                                                 </tbody>
@@ -425,7 +422,7 @@ export const getAllUsers = async (req, res) => {
       await user.save();
   
       const emailContent = generateResetCodeEmail(resetCode);
-sendEmail(email, emailContent.subject, emailContent.body, emailContent.html);
+    sendEmail(email, emailContent.subject, emailContent.body, emailContent.html);
 
   
       res.status(200).json("Mail sent!");
@@ -469,7 +466,6 @@ sendEmail(email, emailContent.subject, emailContent.body, emailContent.html);
     try {
         const users = await UserModel.find({
             $or: [
-                { username: { $regex: searchName, $options: 'i' } },
                 { firstname: { $regex: searchName, $options: 'i' } },
                 { lastname: { $regex: searchName, $options: 'i' } },
             ],

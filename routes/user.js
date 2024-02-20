@@ -12,11 +12,7 @@ import { banUser, ban, checkBanned , deleteAccount} from '../controllers/ban.js'
 const router = express.Router();
 
 // Route pour l'inscription d'un nouvel utilisateur
-router.post('/register', [
-    body('username').notEmpty().isLength({ min: 5 }),
-    body('email').isEmail(),
-    body('password').isLength({ min: 6 })
-], registerUser);
+router.post('/register',registerUser);
 
 // Route pour la yconnexion de l'utilisateur
 router.post('/login', [
