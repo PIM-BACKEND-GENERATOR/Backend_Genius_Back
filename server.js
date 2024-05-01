@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import session from 'express-session';
 import userRoutes from './routes/user.js';
+import historiqueRoutes from './routes/historiqueRoutes.js';
 import { errorHandler, notFoundError } from './middlewares/error_handler.js';
 import dotenv from 'dotenv';
 
@@ -45,6 +46,7 @@ app.use('/gse', (req, res, next) => {
 });
 
 app.use('/user', userRoutes);
+app.use('/historique', historiqueRoutes);
 
 app.use(errorHandler);
 app.use(notFoundError);

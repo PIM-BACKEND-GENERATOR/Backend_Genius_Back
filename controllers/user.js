@@ -418,7 +418,7 @@ export const getAllUsers = async (req, res) => {
       }
   
       const resetCode = generateRandomNumericCode(4);
-      user.restcode = resetCode;
+      user.resetCode = resetCode;
       await user.save();
   
       const emailContent = generateResetCodeEmail(resetCode);
@@ -445,12 +445,13 @@ export const getAllUsers = async (req, res) => {
       const resetCode = req.body.resetCode;
   
       const user = await UserModel.findOne({ email: email });
+      console.log(user)
   
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
   
-      if (user.restcode !== resetCode) {
+      if (user.resetCode !== resetCode) {
         return res.status(400).json({ error: 'Invalid reset code' });
       }
   

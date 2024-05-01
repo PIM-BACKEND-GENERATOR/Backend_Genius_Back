@@ -49,6 +49,10 @@ const userSchema = new Schema(
             type: Boolean,
             default: false,
 
+        },
+        resetCode:{
+            type: String,
+            default: false
         }
 
     },
